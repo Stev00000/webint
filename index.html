@@ -43,7 +43,7 @@
           One of three columns
         </div>
         <div class="col-6">
-          <div id="audio_player" class="card w-100">
+          <div id="audio_player" class="card my_card">
             <div class="card-header bg-secondary text-light">
               <h1>{{word}}</h1>
             </div>
@@ -56,9 +56,29 @@
               </li>
             </ul>
           </div>
-          <div class="input-group flex-nowrap" id="audio_input">
-            <span class="input-group-text bg-secondary text-light" id="addon-wrapping">Search for word</span>
-            <input v-on:keyup.enter="onEnter" v-model="msg" type="text" class="form-control" placeholder="Word" aria-label="Username" aria-describedby="addon-wrapping">
+
+          <div class="input-group flex-nowrap" id="audio_search">
+            <input v-on:keyup.enter="onEnter" v-model="msg" type="text" class="form-control text-center" placeholder="Search a new word" aria-label="Search a new word" aria-describedby="addon-wrapping">
+          </div>
+          <div class="text-center">
+            <button v-on:click="onClick" type="button" id="record_button" class="btn btn-success w-70"><h4>Record Audio</h4></button>
+          </div>
+    
+          
+          <div id="audio_recorder" class="card my_card">
+            <div class="card-header bg-secondary text-light">
+              <h1>Your Recording</h1>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <audio controls v-bind:src="audio" class="w-100">
+                  Your browser does not support the audio element.
+                </audio>
+              </li>
+            </ul>
+          </div>
+          <div class="text-center">
+            <button v-on:click="onClick" :disabled="disabled" type="button" id="pass_button" class="btn btn-success w-70"><h4>Pass</h4></button>
           </div>
         </div>
         <div class="col-3">

@@ -2,7 +2,21 @@
   margin-bottom: 5%;
   text-align: center;
 }
-
+#audio_recorder {
+  margin-bottom: 5%;
+  text-align: center;
+}
 .navbar {
   margin-bottom: 2%;
+}
+.middle_button {
+  align-self: center;
+}
+#record_button {
+  margin-top: 20%;
+  margin-bottom: 5%;
+}
+
+#pass_button {
+  margin-bottom: 5%;
 }
