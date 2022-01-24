@@ -8,6 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
       
@@ -21,7 +22,7 @@
 
 
     <nav class="navbar navbar-expand-lg navbar-light bg-success">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand text-white" href="#">Navbar</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -29,24 +30,42 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link text-white" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
         </ul>
 
       </div>
     </nav>
 
-    <div id="bind-attribute">
-      <span v-bind:title="message">
-        Hover your mouse over me for a few seconds to see my dynamically bound
-        title!
-      </span>
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          One of three columns
+        </div>
+        <div class="col-6">
+          <div id="audio_player" class="card w-100">
+            <div class="card-header bg-secondary text-light">
+              <h1>{{word}}</h1>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{phonetic_script}}</li>
+              <li class="list-group-item">
+                <audio controls v-bind:src="audio" class="w-100">
+                  Your browser does not support the audio element.
+                </audio>
+              </li>
+            </ul>
+          </div>
+          <div class="input-group flex-nowrap" id="audio_input">
+            <span class="input-group-text bg-secondary text-light" id="addon-wrapping">Search for word</span>
+            <input v-on:keyup.enter="onEnter" v-model="msg" type="text" class="form-control" placeholder="Word" aria-label="Username" aria-describedby="addon-wrapping">
+          </div>
+        </div>
+        <div class="col-3">
+          One of three columns
+        </div>
+      </div>
     </div>
-
-    <audio controls id="audio_player" v-bind:src="audio">
-    Your browser does not support the audio element.
-    </audio>
-    <input type="file" name="file" id="file">
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </body>
 </html>
