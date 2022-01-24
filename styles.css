@@ -20,3 +20,25 @@
 #pass_button {
   margin-bottom: 5%;
 }
+
+.my_input {
+  margin-bottom: 5%;
+}
+
+.my_footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3%;
+  color: white;
+  text-align: center;
+}
+
+#current_level {
+  margin-top: 50%;
+}
+
+#show_level {
+  margin-top: 20%;
+}
