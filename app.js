@@ -5,6 +5,48 @@ var current_number = null
 var random_words = null
 var current_random_number = 0
 
+
+var ranking_names = new Vue({
+    el: "#ranking_names",
+    data: {
+        items: ""
+    },
+})
+
+var ranking_scores = new Vue({
+    el: "#ranking_scores",
+    data: {
+        items: ""
+    },
+})
+
+
+function mountRanking() {
+    keys = Object.keys(localStorage)
+    needed_keys = keys.filter(key => key.includes("number"))
+    get_values = needed_keys.map(key => [key.substring(0, key.indexOf('_')), localStorage.getItem(key)])
+    sort_values = get_values.sort(compareSecondColumn)
+    names = get_values.map(function (value, index) { return value[0]; });
+    scores = get_values.map(function (value, index) { return value[1]; });
+    ranking_names.items = names
+    ranking_scores.items = scores
+}
+mountRanking()
+
+function compareSecondColumn(a, b) {
+
+    a_comp = parseInt(a[1])
+    b_comp = parseInt(b[1])
+
+    if (a_comp === b_comp) {
+        return 0;
+    }
+    else {
+        return (a_comp > b_comp) ? -1 : 1;
+    }
+}
+
+
 var audio_player = new Vue({
     el: "#audio_player",
     data: {
@@ -156,13 +198,14 @@ async function fetchAllWords(email = null, random = true) {
     } else {
         current_lections = await complete_word_array.sort(() => 0.5 - Math.random())
         current_number = 0
+        if (email !== null) {
+            localStorage.setItem(email + "_lections", JSON.stringify(current_lections));
+            localStorage.setItem(email + "_number", 0);
+        }
     }
 
 
-    if (email !== null) {
-        localStorage.setItem(email + "_lections", JSON.stringify(store));
-        localStorage.setItem(email + "_number", 0);
-    }
+
 }
 
 fetchAllWords()
@@ -215,4 +258,5 @@ function allStorage() {
 
     return archive;
 }
+
 
