@@ -169,7 +169,7 @@ var after_login_area = new Vue({
 async function fetchWord(word) {
     try {
         console.log("fetch word: " + word)
-        const response = await fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + word);
+        const response = await fetch("https://api.dictionaryapi.dev/api/v2/entries/en/test");
         const data = await response.json()
         // waits until the request completes...
         //const response = await JSON.parse(response_json)
